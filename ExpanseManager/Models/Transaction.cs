@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ExpanseManager.Models
 {
-    public class User
+    public class Transaction
     {
         [Key]
         public int Id { get; set; }
@@ -15,8 +15,11 @@ namespace ExpanseManager.Models
         public string Name { get; set; }
 
         [Required]
-        [MinLength(8)]
-        public string Password { get; set; }
-        
+        public decimal Amount { get; set; }
+
+        [Required]
+        public DateTime TransactionDate { get; set; }
+
+        public string Description { get; set; }
     }
 }
