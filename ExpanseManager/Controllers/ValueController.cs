@@ -11,7 +11,7 @@ namespace ExpanseManager.Controllers
     {
         public IActionResult Get()
         {
-            var list = "value1";
+            var list = new string[] { "value1", "value2" };
             return Ok(list);
         }
     }
