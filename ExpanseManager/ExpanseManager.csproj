@@ -7,9 +7,14 @@
   <ItemGroup>
     <Compile Remove="Data\Migrations\20210805201716_Zbs.cs" />
     <Compile Remove="Data\Migrations\20210805201716_Zbs.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210805225129_Test.cs" />
+    <Compile Remove="Data\Migrations\20210805225129_Test.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210806042949_Test.cs" />
+    <Compile Remove="Data\Migrations\20210806042949_Test.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.17">
       <PrivateAssets>all</PrivateAssets>

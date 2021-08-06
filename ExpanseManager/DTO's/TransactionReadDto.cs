@@ -1,25 +1,21 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using ExpanseManager.Models;
+using System;
 
-namespace ExpanseManager.Models
+namespace ExpanseManager.DTO_s
 {
-    public class Transaction
+    public class TransactionReadDto
     {
-        [Key]
         public int Id { get; set; }
 
-        [Required]
         public string Name { get; set; }
 
-        [Required]
+
         public decimal Amount { get; set; }
 
-        [Required]
         public DateTime TransactionDate { get; set; }
 
         public string Description { get; set; }
 
         public int UserId { get; set; }
-        public User User { get; set; }
     }
 }

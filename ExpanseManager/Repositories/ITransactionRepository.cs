@@ -1,11 +1,20 @@
-﻿using System;
+﻿using ExpanseManager.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ExpanseManager.Repositories
 {
     public interface ITransactionRepository
     {
+        Transaction Create(Transaction transaction);
+
+        IList<Transaction> GetAll();
+
+        Transaction GetById(int id);
+
+        Transaction Update(Transaction transaction);
+
+        void Delete(int id);
+
+        int SaveChanges();
     }
 }

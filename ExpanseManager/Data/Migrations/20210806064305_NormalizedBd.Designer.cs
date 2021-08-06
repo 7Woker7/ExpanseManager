@@ -4,14 +4,16 @@ using ExpanseManager.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ExpanseManager.Migrations
 {
     [DbContext(typeof(ExpanseManagerContext))]
-    partial class ExpanseManagerContextModelSnapshot : ModelSnapshot
+    [Migration("20210806064305_NormalizedBd")]
+    partial class NormalizedBd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

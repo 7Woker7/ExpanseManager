@@ -1,10 +1,9 @@
-﻿using ExpanseManager.Models;
+﻿using AutoMapper;
+using ExpanseManager.DTO_s;
+using ExpanseManager.Models;
 using ExpanseManager.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ExpanseManager.Controllers
 {
@@ -12,26 +11,57 @@ namespace ExpanseManager.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserRepository _repository;
-        public UserController(IUserRepository repository)
+        private readonly IMapper _mapper;
+
+        public UserController(IUserRepository repository, IMapper mapper)
         {
             _repository= repository;
+            _mapper = mapper;
         }
 
-        //private readonly UserRepository _userRepository = new UserRepository();
-        
-
         [HttpGet]
-        public ActionResult <IEnumerable<User>> GetAll()
+        public ActionResult <IEnumerable<UserReadDto>> GetAll()
         {
             var userItems = _repository.GetAll();
-            return Ok(userItems);
+            return Ok(_mapper.Map<IEnumerable<UserReadDto>>(userItems));
         }
 
         [HttpGet("{id}")]
-        public ActionResult <IEnumerable<User>> GetById(int id)
+        public ActionResult <UserReadDto> GetById(int id)
         {
-            var userItems = _repository.GetById(id);
-            return Ok(userItems);
+            var userItem = _repository.GetById(id);
+            if (userItem != null) 
+            { 
+                return Ok(_mapper.Map<UserReadDto>(userItem));
+            }
+            return NotFound();
+        }
+
+        [HttpPost]
+        public ActionResult<UserReadDto> Create([FromBody] UserCreateDto userCreateDto)
+        {
+            var userModel = _mapper.Map<User>(userCreateDto);
+            _repository.Create(userModel);
+
+            var userReadDto = _mapper.Map<UserReadDto>(userModel);
+
+            return Ok(userReadDto);
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult Update(int id, [FromBody] UserCreateDto _userCreateDto)
+        {
+            var _userModel = _repository.GetById(id);
+            if(_userModel == null)
+            {
+                return NotFound();
+            }
+
+            _mapper.Map(_userCreateDto, _userModel);
+
+            _repository.SaveChanges();
+
+            return NoContent();
         }
     }
 }

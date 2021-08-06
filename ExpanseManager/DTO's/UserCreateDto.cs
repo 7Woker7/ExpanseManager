@@ -1,15 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ExpanseManager.Models
+namespace ExpanseManager.DTO_s
 {
-    public class User
+    public class UserCreateDto
     {
-        [Key]
-        public int Id { get; set; }
-
         [Required]
         public string Name { get; set; }
-
         [Required]
         [MinLength(8)]
         public string Password { get; set; }

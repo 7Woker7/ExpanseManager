@@ -1,12 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace ExpanseManager.Models
+namespace ExpanseManager.DTO_s
 {
-    public class Transaction
+    public class TransactionCreateDto
     {
-        [Key]
-        public int Id { get; set; }
 
         [Required]
         public string Name { get; set; }
@@ -18,8 +16,8 @@ namespace ExpanseManager.Models
         public DateTime TransactionDate { get; set; }
 
         public string Description { get; set; }
-
+        
+        [Required]
         public int UserId { get; set; }
-        public User User { get; set; }
     }
 }
