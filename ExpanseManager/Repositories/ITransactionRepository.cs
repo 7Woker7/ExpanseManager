@@ -11,9 +11,9 @@ namespace ExpanseManager.Repositories
 
         Transaction GetById(int id);
 
-        Transaction Update(Transaction transaction);
+        void Update(Transaction transaction);
 
-        void Delete(int id);
+        void Delete(Transaction transaction);
 
         int SaveChanges();
     }

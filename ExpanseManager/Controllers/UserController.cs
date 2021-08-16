@@ -2,6 +2,7 @@
 using ExpanseManager.DTO_s;
 using ExpanseManager.Models;
 using ExpanseManager.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -49,18 +50,32 @@ namespace ExpanseManager.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult Update(int id, [FromBody] UserCreateDto _userCreateDto)
+        public ActionResult Update(int id, [FromBody] UserCreateDto userUpdateDto)
         {
-            var _userModel = _repository.GetById(id);
-            if(_userModel == null)
+            var userUpdateModel = _repository.GetById(id);
+            if(userUpdateModel == null)
             {
                 return NotFound();
             }
 
-            _mapper.Map(_userCreateDto, _userModel);
+            _mapper.Map(userUpdateDto, userUpdateModel);
 
             _repository.SaveChanges();
 
+            return NoContent();
+        }
+
+        [Authorize]
+        [HttpDelete("{id}")]
+        public ActionResult Delete(int id)
+        {
+            var userDeleteModel = _repository.GetById(id);
+            if (userDeleteModel == null)
+            {
+                return NotFound();
+            }
+            _repository.Delete(userDeleteModel);
+            
             return NoContent();
         }
     }

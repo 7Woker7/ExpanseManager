@@ -9,6 +9,7 @@ namespace ExpanseManager.Repositories
         User GetById(int id);
         User Create(User user);
         void Update(User user);
+        void Delete(User user);
         int SaveChanges();
     }
 }

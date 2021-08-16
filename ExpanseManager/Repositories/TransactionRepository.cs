@@ -20,9 +20,10 @@ namespace ExpanseManager.Repositories
             return createTransaction.Entity;
         }
 
-        public void Delete(int id)
+        public void Delete(Transaction transaction)
         {
-            throw new System.NotImplementedException();
+            _context.Transactions.Remove(transaction);
+            _context.SaveChanges();
         }
 
         public IList<Transaction> GetAll()
@@ -40,9 +41,9 @@ namespace ExpanseManager.Repositories
             return (_context.SaveChanges());
         }
 
-        public Transaction Update(Transaction transaction)
+        public void Update(Transaction transaction)
         {
-            throw new System.NotImplementedException();
+            
         }
     }
 }
