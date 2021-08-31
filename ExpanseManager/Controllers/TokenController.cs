@@ -18,16 +18,18 @@ namespace AuthWebApp.Controllers
     public class TokenController : Controller
     {
         private readonly IIdentityRepo _identityRepo;
-
-        public TokenController(IIdentityRepo identityRepo)
+        private readonly IHashing _hashing;
+        public TokenController(IIdentityRepo identityRepo, IHashing hashing)
         {
             _identityRepo = identityRepo;
+            _hashing = hashing;
         }
        
         [HttpPost]
         [Produces("application/json")]
         public IActionResult Post([FromBody] LoginDto userParam)
         {
+            userParam.Password = _hashing.GetHash(userParam.Password);
             var token = _identityRepo.Authenticate(userParam.Name, userParam.Password);
             
             var result = new { token = token };

@@ -13,11 +13,13 @@ namespace ExpanseManager.Controllers
     {
         private readonly IUserRepository _repository;
         private readonly IMapper _mapper;
+        private readonly IHashing _hashing;
 
-        public UserController(IUserRepository repository, IMapper mapper)
+        public UserController(IUserRepository repository, IMapper mapper, IHashing hashing)
         {
             _repository= repository;
             _mapper = mapper;
+            _hashing = hashing;
         }
 
         [HttpGet]
@@ -41,6 +43,7 @@ namespace ExpanseManager.Controllers
         [HttpPost]
         public ActionResult<UserReadDto> Create([FromBody] UserCreateDto userCreateDto)
         {
+            userCreateDto.Password = _hashing.GetHash(userCreateDto.Password);
             var userModel = _mapper.Map<User>(userCreateDto);
             _repository.Create(userModel);
 

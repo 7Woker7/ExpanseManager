@@ -33,7 +33,7 @@ namespace ExpanseManager
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ITransactionRepository, TransactionRepository>();
-
+            services.AddScoped<IHashing, Hashing>();
             services.AddScoped<IUserAuthRepository, UserAuthRepository>();
             services.AddScoped<IIdentityRepo, IdentityRepo>();
             
