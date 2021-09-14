@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ExpanseManager.DTO_s;
+using ExpanseManager.DTO;
 using System.Transactions;
 
 namespace ExpanseManager.Profiles

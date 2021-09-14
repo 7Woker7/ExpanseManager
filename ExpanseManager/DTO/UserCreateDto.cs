@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ExpanseManager.DTO_s
+namespace ExpanseManager.DTO
 {
     public class UserCreateDto
     {

@@ -1,7 +1,5 @@
 ﻿using ExpanseManager.Data;
 using ExpanseManager.Models;
-using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 

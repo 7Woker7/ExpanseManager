@@ -1,4 +1,4 @@
-﻿using ExpanseManager.DTO_s;
+﻿using ExpanseManager.DTO;
 using ExpanseManager.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;

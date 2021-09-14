@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ValueService } from 'src/app/services/value.service';
 
 @Component({
   selector: 'app-register',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private valueService: ValueService, ) { }
 
   ngOnInit(): void {
   }
 
+  GetValue(){
+    this.valueService.GetValue();
+  }
 }

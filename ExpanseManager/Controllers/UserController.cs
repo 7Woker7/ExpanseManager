@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ExpanseManager.DTO_s;
+using ExpanseManager.DTO;
 using ExpanseManager.Models;
 using ExpanseManager.Repositories;
 using Microsoft.AspNetCore.Authorization;

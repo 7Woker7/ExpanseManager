@@ -1,7 +1,7 @@
 ﻿using ExpanseManager.Models;
 using System;
 
-namespace ExpanseManager.DTO_s
+namespace ExpanseManager.DTO
 {
     public class TransactionReadDto
     {
