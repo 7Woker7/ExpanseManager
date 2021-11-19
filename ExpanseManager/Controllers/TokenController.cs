@@ -1,6 +1,7 @@
 ﻿using ExpanseManager.DTO;
 using ExpanseManager.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -19,10 +20,12 @@ namespace AuthWebApp.Controllers
     {
         private readonly IIdentityRepo _identityRepo;
         private readonly IHashing _hashing;
-        public TokenController(IIdentityRepo identityRepo, IHashing hashing)
+        private readonly ILogger<TokenController> _logger;
+        public TokenController(IIdentityRepo identityRepo, IHashing hashing, ILogger<TokenController> logger)
         {
             _identityRepo = identityRepo;
             _hashing = hashing;
+            _logger = logger;
         }
        
         [HttpPost]
@@ -31,7 +34,10 @@ namespace AuthWebApp.Controllers
         {
             userParam.Password = _hashing.GetHash(userParam.Password);
             var token = _identityRepo.Authenticate(userParam.Name, userParam.Password);
-            
+
+            string user = userParam.Name;
+            _logger.LogInformation("User '{user}' just signed in ", user );
+
             var result = new { token = token };
             return Ok(result);
         }

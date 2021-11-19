@@ -1,0 +1,17 @@
+version: '3'
+services:
+  expm_db:
+    container_name : expm_db
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Qwerty123"
+    ports:
+      - "5000:1433"
+    restart : always
+  expm_api:
+    container_name : expm_api
+    build: .
+    ports:
+      - "2000:80"
+    restart : always

@@ -10,7 +10,7 @@ namespace ExpanseManager.DTO
         public string Name { get; set; }
 
 
-        public decimal Amount { get; set; }
+        //public decimal Amount { get; set; }
 
         public DateTime TransactionDate { get; set; }
 

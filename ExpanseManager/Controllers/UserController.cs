@@ -4,6 +4,7 @@ using ExpanseManager.Models;
 using ExpanseManager.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 
 namespace ExpanseManager.Controllers
@@ -14,12 +15,14 @@ namespace ExpanseManager.Controllers
         private readonly IUserRepository _repository;
         private readonly IMapper _mapper;
         private readonly IHashing _hashing;
+        private readonly ILogger<UserController> _logger;
 
-        public UserController(IUserRepository repository, IMapper mapper, IHashing hashing)
+        public UserController(IUserRepository repository, IMapper mapper, IHashing hashing, ILogger<UserController> logger)
         {
             _repository= repository;
             _mapper = mapper;
             _hashing = hashing;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -46,8 +49,10 @@ namespace ExpanseManager.Controllers
             userCreateDto.Password = _hashing.GetHash(userCreateDto.Password);
             var userModel = _mapper.Map<User>(userCreateDto);
             _repository.Create(userModel);
-
             var userReadDto = _mapper.Map<UserReadDto>(userModel);
+
+            string name = userCreateDto.Name;
+            _logger.LogInformation("New user was created, his name is {name}",name);
 
             return Ok(userReadDto);
         }
@@ -68,13 +73,14 @@ namespace ExpanseManager.Controllers
             return NoContent();
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
             var userDeleteModel = _repository.GetById(id);
             if (userDeleteModel == null)
             {
+                _logger.LogError("Attempt of deleting non-existing user with id = {id}",id);
                 return NotFound();
             }
             _repository.Delete(userDeleteModel);
