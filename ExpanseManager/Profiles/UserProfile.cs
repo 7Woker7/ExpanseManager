@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ExpanseManager.DTO;
 using ExpanseManager.Models;
+using ExpanseManager.Extensions;
 
 namespace ExpanseManager.Profiles
 {
@@ -9,7 +10,9 @@ namespace ExpanseManager.Profiles
         public UserProfile()
         {
             CreateMap<User, UserReadDto>();
-            CreateMap<UserCreateDto, User>();
+      
+            CreateMap<UserCreateDto, User>()
+            .ForMember(p => p.BirthDate, o => o.MapFrom(r => r.BirthDate.CreateDate(r.Year,r.Month,r.Day)));
         }
     }
 }

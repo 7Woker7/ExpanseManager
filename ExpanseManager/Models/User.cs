@@ -1,10 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace ExpanseManager.Models
 {
-    public class User
+    public record User
     {
-        [Key]
+        //[Key]
         public int Id { get; set; }
 
         [Required]
@@ -13,6 +14,9 @@ namespace ExpanseManager.Models
         [Required]
         [MinLength(8)]
         public string Password { get; set; }
+
+        //[Required]
+        public DateTime BirthDate { get; set; }
 
     }
 }

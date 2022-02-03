@@ -3,22 +3,15 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ExpanseManager.Migrations
 {
-    public partial class CompletedDb : Migration
+    public partial class ComplitedDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_User",
-                table: "User");
-
-            migrationBuilder.RenameTable(
-                name: "User",
-                newName: "Users");
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_Users",
+            migrationBuilder.AddColumn<DateTime>(
+                name: "BirthDate",
                 table: "Users",
-                column: "Id");
+                nullable: false,
+                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
 
             migrationBuilder.CreateTable(
                 name: "Transactions",
@@ -27,7 +20,6 @@ namespace ExpanseManager.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: false),
-                    Amount = table.Column<decimal>(nullable: false),
                     TransactionDate = table.Column<DateTime>(nullable: false),
                     Description = table.Column<string>(nullable: true)
                 },
@@ -42,18 +34,9 @@ namespace ExpanseManager.Migrations
             migrationBuilder.DropTable(
                 name: "Transactions");
 
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_Users",
+            migrationBuilder.DropColumn(
+                name: "BirthDate",
                 table: "Users");
-
-            migrationBuilder.RenameTable(
-                name: "Users",
-                newName: "User");
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_User",
-                table: "User",
-                column: "Id");
         }
     }
 }

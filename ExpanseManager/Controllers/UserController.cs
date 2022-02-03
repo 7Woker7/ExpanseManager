@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ExpanseManager.DTO;
+using ExpanseManager.Extensions;
 using ExpanseManager.Models;
 using ExpanseManager.Repositories;
 using Microsoft.AspNetCore.Authorization;
@@ -52,7 +53,13 @@ namespace ExpanseManager.Controllers
             var userReadDto = _mapper.Map<UserReadDto>(userModel);
 
             string name = userCreateDto.Name;
+            var day = userCreateDto.Day;
+            var year = userCreateDto.Year;
+            var month = userCreateDto.Month;
             _logger.LogInformation("New user was created, his name is {name}",name);
+            _logger.LogInformation("New user was created, his data is {day}", day);
+            _logger.LogInformation("New user was created, his data is {year}", year);
+            _logger.LogInformation("New user was created, his data is {month}", month);
 
             return Ok(userReadDto);
         }

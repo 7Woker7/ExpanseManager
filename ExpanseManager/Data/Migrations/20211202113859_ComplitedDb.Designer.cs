@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExpanseManager.Migrations
 {
     [DbContext(typeof(ExpanseManagerContext))]
-    [Migration("20210802192228_CompletedDb")]
-    partial class CompletedDb
+    [Migration("20211202113859_ComplitedDb")]
+    partial class ComplitedDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,9 +27,6 @@ namespace ExpanseManager.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -52,6 +49,9 @@ namespace ExpanseManager.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("BirthDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
