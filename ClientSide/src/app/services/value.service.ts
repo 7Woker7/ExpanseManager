@@ -7,6 +7,9 @@ export class ValueService{
      constructor(private _http: HttpClient){  }
 
      GetValue(){
-         return this._http.get('api/value');
+         return this._http.get('http://localhost:5000/api/value')
+         .subscribe((res)=>{
+            console.log(res);
+         });
      }
 }
