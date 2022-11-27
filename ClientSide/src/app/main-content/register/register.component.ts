@@ -8,12 +8,12 @@ import { ValueService } from 'src/app/services/value.service';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private valueService: ValueService, ) { }
+   constructor(private valueService: ValueService, ) { }
 
   ngOnInit(): void {
   }
 
-  GetValue(){
-    this.valueService.GetValue();
-  }
+   GetValue(){
+     this.valueService.GetValue();
+   }
 }
